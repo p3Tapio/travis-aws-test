@@ -1,0 +1,16 @@
+// AWS Edge@Lambda funktio, index.js
+
+exports.handler = (event, context, callback) => {
+    const request = event.Records[0].cf.request;
+
+    console.log('first i was like: ', request.uri)
+    
+
+    if(request.uri === '/sunshine' || request.uri === '/selitysta' || request.uri === '/') {
+        request.uri = '/index.html';
+    }
+
+    console.log('but then: ', request.uri)
+    
+    callback(null, request)
+};
